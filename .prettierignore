@@ -1,0 +1,16 @@
+# Next.js
+.next
+/out/
+
+# 패키지
+node_modules
+build
+coverage
+
+# 환경 변수
+.env
+.env.*
+
+# Git, 시스템 파일
+.git
+.DS_Store
