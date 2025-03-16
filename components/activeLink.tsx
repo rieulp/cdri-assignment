@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link, { LinkProps } from 'next/link';
-import clsx from 'clsx';
+import tw from '@/utils/tw';
 
 type Props = {
   activeClassName: string;
@@ -14,7 +14,7 @@ export default function ActiveLink({ activeClassName, className = '', ...props }
   const isActive = pathname === props.href;
 
   return (
-    <Link {...props} className={clsx(className, { [activeClassName]: isActive })}>
+    <Link {...props} className={tw(className, { [activeClassName]: isActive })}>
       {props.children}
     </Link>
   );
