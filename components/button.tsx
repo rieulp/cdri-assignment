@@ -1,4 +1,4 @@
-import tw from '@/utils/tw';
+import { tw } from '@/utils';
 
 type ButtonSize = 'sm' | 'md';
 type ButtonVariant = 'outline' | 'solid';

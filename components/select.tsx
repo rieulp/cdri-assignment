@@ -2,7 +2,7 @@
 
 import { useState, useRef, useId } from 'react';
 import { useClickOutside } from '@/hooks/useClickOutside';
-import tw from '@/utils/tw';
+import { tw } from '@/utils';
 import Icon from '@/components/icon';
 
 type Option = { label: string; value: string };

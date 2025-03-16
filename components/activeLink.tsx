@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link, { LinkProps } from 'next/link';
-import tw from '@/utils/tw';
+import { tw } from '@/utils';
 
 type Props = {
   activeClassName: string;
