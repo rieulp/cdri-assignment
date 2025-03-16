@@ -2,27 +2,28 @@ import { colors } from '@/styles/theme/colors';
 import { typography } from '@/styles/theme/typography';
 import { ClassNameValue, extendTailwindMerge } from 'tailwind-merge';
 
+const typographyKeys = Object.keys(typography);
+const colorKeys = Object.entries(colors).flatMap(([key, value]) => {
+  if (typeof value === 'object') {
+    return Object.keys(value).map((subKey) => (subKey === 'DEFAULT' ? key : `${key}-${subKey}`));
+  }
+  return key;
+});
+
 const customTwMerge = extendTailwindMerge({
   extend: {
     theme: {
-      text: Object.keys(typography),
-      color: Object.entries(colors).flatMap(([key, value]) => {
-        if (typeof value === 'object') {
-          return Object.keys(value).map((subKey) => {
-            return subKey === 'DEFAULT' ? key : `${key}-${subKey}`;
-          });
-        }
-        return key;
-      }),
+      text: typographyKeys,
+      color: colorKeys,
     },
   },
 });
 
-type Props = Array<ClassNameValue | Record<string, boolean>>;
+type Props = Array<ClassNameValue | Record<string, boolean | undefined | null>>;
 export default function tw(...classLists: Props) {
-  const classNames = classLists.map((classList) => {
-    if (typeof classList === 'object' && classList !== null && !Array.isArray(classList)) {
-      return Object.keys(classList).filter((key) => classList[key]);
+  const classNames = classLists.flatMap((classList) => {
+    if (classList !== null && typeof classList === 'object' && !Array.isArray(classList)) {
+      return Object.keys(classList).filter((key) => Boolean(classList[key]));
     }
     return classList;
   });
