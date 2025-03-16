@@ -1,13 +1,11 @@
 export const colors = {
+  primary: '#4880EE',
+  lightGray: '#F2F4F6',
+  black: '#222222',
+  white: '#FFFFFF',
   red: { DEFAULT: '#E84118' },
-  p: {
-    primary: '#4880EE',
-    black: '#222222',
-    gray: '#DADADA',
-    lightGray: '#F2F4F6',
-    white: '#FFFFFF',
-  },
-  t: {
+  gray: { DEFAULT: '#DADADA' },
+  text: {
     primary: '#353C49',
     secondary: '#6D7582',
     subtitle: '#8D94A0',
