@@ -5,18 +5,25 @@ import { useClickOutside } from '@/hooks/useClickOutside';
 import { tw } from '@/utils';
 import Icon from '@/components/icon';
 
-type Option = { label: string; value: string };
+type Option<T> = { label: string; value: T };
 
-type Props = {
-  options: Option[];
-  value: string;
-  onChange: (value: string) => void;
+type Props<T> = {
+  options: Option<T>[];
+  value: T;
+  onChange: (value: T) => void;
   className?: string;
   disabled?: boolean;
   hideSelectedOption?: boolean;
 };
 
-export default function Select({ onChange, options, value, className, hideSelectedOption, disabled }: Props) {
+export default function Select<T extends string>({
+  onChange,
+  options,
+  value,
+  className,
+  hideSelectedOption,
+  disabled,
+}: Props<T>) {
   const [open, setOpen] = useState(false);
   const listRef = useRef<HTMLUListElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,7 +32,7 @@ export default function Select({ onChange, options, value, className, hideSelect
 
   useClickOutside(containerRef, () => setOpen(false));
 
-  const isSkipOption = (option: Option) => options.length >= 2 && hideSelectedOption && option.value === value;
+  const isSkipOption = (option: Option<T>) => options.length >= 2 && hideSelectedOption && option.value === value;
 
   const focusNextOption = (currentIndex: number, direction: 'up' | 'down') => {
     const step = direction === 'down' ? 1 : -1;
@@ -38,7 +45,7 @@ export default function Select({ onChange, options, value, className, hideSelect
     (listRef.current?.children[nextIndex] as HTMLElement)?.focus();
   };
 
-  const handleSelect = (selectedValue: string) => {
+  const handleSelect = (selectedValue: T) => {
     onChange(selectedValue);
     setOpen(false);
   };
