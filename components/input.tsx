@@ -7,7 +7,7 @@ export default function Input({ className, ref, ...props }: Props) {
       {...props}
       ref={ref}
       className={tw(
-        'outline-none border-none bg-transparent text-body2 placeholder-text-text-subtitle px-4 py-[0.8rem] text-text',
+        'outline-none bg-transparent text-body2 placeholder-text-text-subtitle px-4 py-[0.8rem] text-text',
         className,
       )}
     />
