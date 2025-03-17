@@ -1,10 +1,6 @@
 import { Header } from './header';
 
-export default function DefaultLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function DefaultLayout({ children }: { children?: React.ReactNode }) {
   return (
     <div className="grid grid-rows-[auto_1fr_auto] justify-items-center items-stretch min-h-safe mx-auto">
       <Header />

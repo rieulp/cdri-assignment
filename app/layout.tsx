@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
-import clsx from 'clsx';
+import { tw } from '@/utils';
 import '@/styles/globals.css';
+import { ReactQueryProvider } from '@/context/queryProvider';
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ['latin'],
@@ -27,7 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body className={clsx(notoSansKR.className, 'antialiased')}>{children}</body>
+      <body className={tw(notoSansKR.className, 'antialiased')}>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <div id="modal-root" />
+      </body>
     </html>
   );
 }
