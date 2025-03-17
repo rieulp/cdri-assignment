@@ -1,29 +1,30 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { PopupContext } from './popupContext';
+import { tw } from '@/utils';
 
 type Props = {
   children: React.ReactNode;
   onClose?: () => void;
+  className?: string;
 };
 
-export function PopupContainer({ children, onClose }: Props) {
+export function PopupContainer({ children, className, onClose }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const close = () => setIsOpen(false);
+  const close = () => {
+    setIsOpen(false);
+    onClose?.();
+  };
   const toggle = () => setIsOpen((prev) => !prev);
 
   useClickOutside(containerRef, close);
 
-  useEffect(() => {
-    if (!isOpen) onClose?.();
-  }, [isOpen, onClose]);
-
   return (
     <PopupContext.Provider value={{ isOpen, close, toggle }}>
-      <div ref={containerRef} className="relative">
+      <div ref={containerRef} className={tw('relative', className)}>
         {children}
       </div>
     </PopupContext.Provider>
