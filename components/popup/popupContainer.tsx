@@ -15,6 +15,7 @@ export function PopupContainer({ children, className, onClose }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const close = () => {
+    if (!isOpen) return;
     setIsOpen(false);
     onClose?.();
   };
