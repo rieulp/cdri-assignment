@@ -1,28 +1,26 @@
-import SearchIcon from './search.svg';
-import LikeLineIcon from './likeLine.svg';
-import LikeFillIcon from './likeFill.svg';
-import CloseIcon from './close.svg';
-import ArrowUpIcon from './arrowUp.svg';
-import ArrowDownIcon from './arrowDown.svg';
+import dynamic from 'next/dynamic';
 
-type SvgrIconType = React.FC<React.SVGProps<SVGSVGElement>>;
+const iconMap = {
+  search: dynamic(() => import('@/assets/icons/search.svg')),
+  likeLine: dynamic(() => import('@/assets/icons/likeLine.svg')),
+  likeFill: dynamic(() => import('@/assets/icons/likeFill.svg')),
+  close: dynamic(() => import('@/assets/icons/close.svg')),
+  arrowUp: dynamic(() => import('@/assets/icons/arrowUp.svg')),
+  arrowDown: dynamic(() => import('@/assets/icons/arrowDown.svg')),
+  book: dynamic(() => import('@/assets/icons/book.svg')),
+} as const;
 
-const iconMap: Record<string, SvgrIconType> = {
-  search: SearchIcon,
-  likeLine: LikeLineIcon,
-  likeFill: LikeFillIcon,
-  close: CloseIcon,
-  arrowUp: ArrowUpIcon,
-  arrowDown: ArrowDownIcon,
-};
+export type IconName = keyof typeof iconMap;
+
+type SvgrComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 type Props = {
-  name: keyof typeof iconMap;
-  size?: number | string;
+  name: IconName;
+  size?: `${number}px` | `${number}rem`;
 } & React.SVGProps<SVGSVGElement>;
 
-export default function Icon({ name, size, ...props }: Props) {
-  const IconComponent = iconMap[name];
+export default function Icon({ name, size = '2rem', ...props }: Props) {
+  const IconComponent = iconMap[name] as SvgrComponent;
   if (!IconComponent) return null;
 
   return <IconComponent {...props} width={size} height={size} />;
