@@ -141,3 +141,30 @@ const { books, fetchNextPage, hasNextPage, meta } = useSearchBooks(searchQuery);
 
 - `searchQuery`를 기반으로 API 요청을 보내고 데이터를 가져옵니다.
 - `fetchNextPage`는 무한 스크롤을 통해 다음 페이지의 데이터를 추가로 가져옵니다.
+
+## 라이브러리
+
+- Next.js: 서버 사이드 렌더링(SSR)을 위해 추가
+- React Query: API 응답 캐싱을위해 추가
+- Tailwind CSS: 빠르고 직관적인 스타일링과 디자인 시스템(토큰)을 위해 추가
+- tailwind-merge: Tailwind CSS 사용 시 조건부 className 적용과 중복 스타일 제거를 위해 추가
+- @svgr/webpack: SVG 파일을 React 컴포넌트로 변환하여 아이콘 컴포넌트로 사용을 위해 추가
+- prettier: 일관된 코드 스타일을 유지하기위해 추가
+- entities: Kakao 도서 검색 API 응답에서 `content` 텍스트를 디코딩해 정상적으로 렌더링하기 위해 사용
+
+## 강조 하고 싶은 기능
+
+- 무한 스크롤 구현
+  - Intersection Observer로 스크롤이 하단에 도달하면 자동으로 10개씩 데이터 로드
+- useLocalStorage 커스텀 훅
+  - 타입 안정성을 유지하면서 로컬스토리지 데이터를 쉽게 관리
+- useClickOutside 커스텀 훅
+  - popup이나 select 컴포넌트 외부 클릭을 감지하여 자동으로 닫히도록 처리
+- BookListItem 컴포넌트 스크롤 조정
+  - 펼쳐졌을 때 화면에 가려지는 문제를 해결하기 위해 scroll 위치 조정
+- 검색 조건 유지
+  - 검색 조건을 url searchParams에 반영하여, 새로고침 후에도 사용자가 검색한 내용이 유지되도록 처리
+- 일반 검색 및 상세 검색 enter 키 입력 시 검색 실행
+- Select 컴포넌트
+  - hideSelectedOption prop을 적용하여 이미 선택된 옵션은 목록에서 제외
+  - up/down 키로 옵션을 탐색하고, Enter로 선택 가능
