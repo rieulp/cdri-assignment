@@ -26,7 +26,7 @@ export default function SearchBox({ onSearch, searchBooksQuery }: Props) {
   const [query, setQuery] = useState('');
   const [detailQuery, setDetailQuery] = useState<Pick<SearchBooksQuery, 'target' | 'targetQuery'>>({
     target: searchBooksQuery.target,
-    targetQuery: searchBooksQuery.target ? searchBooksQuery.query : '',
+    targetQuery: searchBooksQuery.target ? searchBooksQuery.targetQuery : '',
   });
 
   const { searchHistory, addHistory, removeHistory } = useSearchHistory();
@@ -39,8 +39,7 @@ export default function SearchBox({ onSearch, searchBooksQuery }: Props) {
   };
 
   const handleDetailSearch = () => {
-    setQuery('');
-    onSearch({ searchType: 'target', target: detailQuery.target, query: detailQuery.targetQuery?.trim() });
+    onSearch({ searchType: 'target', target: detailQuery.target, targetQuery: detailQuery.targetQuery?.trim() });
   };
 
   return (
@@ -93,10 +92,10 @@ export default function SearchBox({ onSearch, searchBooksQuery }: Props) {
                   color="primary"
                   size="sm"
                   disabled={!detailQuery.targetQuery}
-                  onClick={() => {
-                    handleDetailSearch();
-                    close();
-                  }}
+                  // onClick={() => {
+                  //   handleDetailSearch();
+                  //   close();
+                  // }}
                 >
                   검색하기
                 </Button>
