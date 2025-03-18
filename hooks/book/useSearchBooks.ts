@@ -34,7 +34,7 @@ export const getBooks = async (params: SearchBooksParams) => {
   else return fetchBooks({ query: targetQuery, page, size: SIZE, target });
 };
 
-export const useInfiniteSearchBooks = (params: SearchBooksQuery) => {
+export const useSearchBooks = (params: SearchBooksQuery) => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['books', params],
     queryFn: ({ pageParam = 1 }) => getBooks({ ...params, page: pageParam }),

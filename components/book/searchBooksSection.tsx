@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { SearchBooksQuery, useInfiniteSearchBooks } from '@/hooks/book';
+import { SearchBooksQuery, useSearchBooks } from '@/hooks/book';
 import NoData from '@/components/common/empty/noData';
 import CountText from '@/components/common/countText';
 import SearchBox from './searchBox';
@@ -28,7 +28,7 @@ export default function SearchBooksSection() {
     router.replace(`?${urlSearchParams.toString()}`);
   };
 
-  const { books, fetchNextPage, hasNextPage, meta } = useInfiniteSearchBooks(searchQuery);
+  const { books, fetchNextPage, hasNextPage, meta } = useSearchBooks(searchQuery);
 
   const bottomRefCallback = useCallback(
     (node: HTMLDivElement | null) => {
