@@ -18,6 +18,22 @@ export function BookListItem({ book, isLiked, onToggleLike: onClickLike }: Props
   const [isExpanded, toggleExpand] = useState(false);
   const hasDiscount = book.sale_price < book.price;
 
+  const handleExpandScroll = (element: HTMLButtonElement) => {
+    if (!element) return;
+
+    const rect = element.getBoundingClientRect();
+    const elementBottom = rect.bottom;
+    const viewportHeight = window.innerHeight;
+    const hiddenHeight = elementBottom - viewportHeight;
+
+    if (hiddenHeight > 0) {
+      window.scrollBy({
+        behavior: 'smooth',
+        top: hiddenHeight + 100,
+      });
+    }
+  };
+
   return (
     <li
       className={tw(
@@ -36,7 +52,14 @@ export function BookListItem({ book, isLiked, onToggleLike: onClickLike }: Props
             isExpanded ? 'w-[21rem] h-[28rem]' : 'w-[4.8rem] h-[6.8rem]',
           )}
         >
-          <Image src={book.thumbnail || '/no-image.png'} alt={book.title} fill className="object-cover object-center" />
+          <Image
+            src={book.thumbnail || '/no-image.png'}
+            alt={book.title}
+            fill
+            sizes="48rem"
+            className="object-cover"
+            decoding="async"
+          />
           <button
             onClick={onClickLike}
             className={tw('absolute', isExpanded ? 'top-[0.8rem] right-[0.8rem]' : 'top-0 right-0')}
@@ -127,7 +150,9 @@ export function BookListItem({ book, isLiked, onToggleLike: onClickLike }: Props
 
         {isExpanded && (
           <a href={book.url} target="_blank" rel="noreferrer">
-            <Button className="pointer-events-none w-full">구매하기</Button>
+            <Button className="pointer-events-none w-full" ref={handleExpandScroll}>
+              구매하기
+            </Button>
           </a>
         )}
       </div>

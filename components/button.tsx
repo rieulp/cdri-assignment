@@ -10,6 +10,7 @@ type ButtonProps = {
   variant?: ButtonVariant;
   color?: ButtonColor;
   icon?: IconName;
+  ref?: React.Ref<HTMLButtonElement>;
 };
 type Props = ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
