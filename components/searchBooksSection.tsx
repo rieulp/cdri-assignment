@@ -38,7 +38,7 @@ export default function SearchBooksSection() {
         (entries) => {
           if (entries[0].isIntersecting && hasNextPage) fetchNextPage();
         },
-        { threshold: 0.1 },
+        { threshold: 0.1, rootMargin: '400px' },
       );
       observer.observe(node);
 
