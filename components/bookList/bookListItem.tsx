@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Button } from '@/components/button';
 import Icon from '@/components/icon';
 import { tw } from '@/utils';
@@ -18,7 +18,7 @@ export function BookListItem({ book, isLiked, onToggleLike: onClickLike }: Props
   const [isExpanded, toggleExpand] = useState(false);
   const hasDiscount = book.sale_price < book.price;
 
-  const handleExpandScroll = (element: HTMLButtonElement) => {
+  const handleExpandScroll = useCallback((element: HTMLButtonElement) => {
     if (!element) return;
 
     const rect = element.getBoundingClientRect();
@@ -32,7 +32,7 @@ export function BookListItem({ book, isLiked, onToggleLike: onClickLike }: Props
         top: hiddenHeight + 100,
       });
     }
-  };
+  }, []);
 
   return (
     <li
