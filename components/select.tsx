@@ -77,6 +77,7 @@ export default function Select<T extends string>({
   return (
     <div ref={containerRef} className="relative">
       <button
+        type="button"
         role="combobox"
         aria-haspopup="listbox"
         aria-expanded={open}
