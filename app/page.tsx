@@ -1,7 +1,7 @@
 import React from 'react';
 import DefaultLayout from '@/components/layout/defaultLayout';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import SearchBooksSection from '@/components/searchBooksSection';
+import SearchBooksSection from '@/components/book/searchBooksSection';
 import { getBooks, SearchBooksQuery } from '@/hooks/book/useSearchBooks';
 
 export default async function Home({

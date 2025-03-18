@@ -1,4 +1,4 @@
-import { useLocalStorage } from '../useLocalStorage';
+import { useLocalStorage } from '@/hooks/common';
 
 const LIMIT = 8;
 

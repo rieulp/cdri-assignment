@@ -1,4 +1,4 @@
-import ActiveLink from '@/components/activeLink';
+import ActiveLink from '@/components/common/activeLink';
 import Link from 'next/link';
 
 export function Header() {

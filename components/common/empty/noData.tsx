@@ -1,4 +1,4 @@
-import Icon, { IconName } from '@/components//common/icon';
+import Icon, { IconName } from '@/components/common/icon';
 import { tw } from '@/utils';
 
 type Props = {

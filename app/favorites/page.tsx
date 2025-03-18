@@ -1,8 +1,8 @@
 'use client';
 
-import BookList from '@/components/bookList';
-import CountText from '@/components/countText';
-import NoData from '@/components/empty/noData';
+import BookList from '@/components/book/bookList';
+import CountText from '@/components/common/countText';
+import NoData from '@/components/common/empty/noData';
 import { useLikedBooks } from '@/hooks/book/useLikedBooks';
 
 export default function Favorite() {
