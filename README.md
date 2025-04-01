@@ -104,7 +104,12 @@ const handleGlobalSearch = (value: string) => {
 };
 
 const handleDetailSearch = () => {
-  handleSearch({ searchType: 'target', target: searchQuery.target, query: searchQuery.targetQuery.trim() });
+  handleSearch({
+    searchType: 'target',
+    target: searchQuery.target,
+    targetQuery: searchQuery.targetQuery.trim(),
+    query: '',
+  });
 };
 ```
 

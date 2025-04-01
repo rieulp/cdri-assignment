@@ -39,7 +39,12 @@ export default function SearchBox({ onSearch, searchBooksQuery }: Props) {
 
   const handleDetailSearch = () => {
     setQuery('');
-    onSearch({ searchType: 'target', target: detailQuery.target, targetQuery: detailQuery.targetQuery?.trim() });
+    onSearch({
+      searchType: 'target',
+      target: detailQuery.target,
+      targetQuery: detailQuery.targetQuery?.trim(),
+      query: '',
+    });
   };
 
   return (
